@@ -9,9 +9,11 @@ import player.Player;
 public class HeroPlayer implements Player {
     private String name;
     private Hand hand;
+    private Lobby lobby;
 
-    public HeroPlayer(String name) {
+    public HeroPlayer(String name, Lobby lobby) {
         this.name = name;
+        this.lobby = lobby;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class HeroPlayer implements Player {
 
     @Override
     public String makeAChoice() {
-        int playerChoice = Lobby.getPlayerChoice();
+        int playerChoice = lobby.getPlayerChoice();
         this.hand = Hand.values()[playerChoice];
         return String.valueOf(hand);
     }

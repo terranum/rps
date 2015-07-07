@@ -3,6 +3,8 @@ package player.impl;
 import player.Hand;
 import player.Player;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ComputerPlayer implements Player {
     private String name;
     private Hand hand;
@@ -25,7 +27,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public String makeAChoice() {
-        int randomId = (int) (Math.random() * Hand.values().length);
+        int randomId = ThreadLocalRandom.current().nextInt(Hand.values().length);
         hand = Hand.values()[randomId];
         return String.valueOf(randomId);
     }

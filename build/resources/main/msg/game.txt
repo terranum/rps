@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        Choice your game type
+
+                                        1 - OneWinner
+                                        2 - OneLoser
+                                        3 - Tournament
+                                        4 - Face to Face Tournament
