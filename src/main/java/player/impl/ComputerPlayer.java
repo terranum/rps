@@ -6,13 +6,16 @@ import player.Player;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ComputerPlayer implements Player {
-    private String name;
+
+    private final static String COMPUTER = "Computer";
+
+    private final String name;
     private Hand hand;
     private static int count = 0;
 
     public ComputerPlayer() {
         count++;
-        this.name = "Computer"+ count;
+        this.name = COMPUTER + count;
     }
 
     @Override

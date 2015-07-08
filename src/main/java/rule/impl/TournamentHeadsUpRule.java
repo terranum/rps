@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+public class TournamentHeadsUpRule implements Rule {
 
-public class TournametHeadsUpRule implements Rule{
-    List<Player> players;
+    private final List<Player> players;
 
-    public TournametHeadsUpRule(List<Player> players) {
+    public TournamentHeadsUpRule(List<Player> players) {
         this.players = players;
     }
 
@@ -23,20 +23,20 @@ public class TournametHeadsUpRule implements Rule{
 
     private List<Player> recursivePlay(List<Player> players) {
 
-        if(players.size() == 1){
+        if (players.size() == 1) {
             return players;
         }
 
         List<Player> result = new ArrayList<>();
 
-        if(players.size() == 0){
+        if (players.size() == 0) {
             return result;
         }
 
         Round round;
         List<Player> winners = new ArrayList<>();
         List<Player> losers = new ArrayList<>();
-        for(int i = 1; i < players.size(); i += 2){
+        for (int i = 1; i < players.size(); i += 2) {
             round = new Round(Arrays.asList(players.get(i), players.get(i - 1)));
             round.play();
             winners.addAll(round.getWinners());

@@ -7,7 +7,8 @@ import rule.Rule;
 import java.util.List;
 
 public class LoserRule implements Rule {
-    List<Player> players;
+
+    private final List<Player> players;
 
     public LoserRule(List<Player> players) {
         this.players = players;

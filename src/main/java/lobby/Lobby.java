@@ -6,7 +6,7 @@ import player.impl.HeroPlayer;
 import rule.Rule;
 import rule.impl.LoserRule;
 import rule.impl.TournamentRule;
-import rule.impl.TournametHeadsUpRule;
+import rule.impl.TournamentHeadsUpRule;
 import rule.impl.WinnerRule;
 
 import java.util.ArrayList;
@@ -15,11 +15,27 @@ import java.util.Scanner;
 
 public class Lobby {
 
+    private static final String NAME = "name";
+    private static final String CHOICE = "choice";
+    private static final String REPLAY = "replay";
+    private static final String SEE_YOU = "seeYou";
+    private static final String GAME = "game";
+    private static final String HELLO = "hello";
+    private static final String PLAYERS = "players";
+    private static final String PLAYER_PAIRS = "playerPairs";
+    private static final String YES = "Y";
+
+    private static final String REGEX_PLAYER_CHOICE = "[0-2]";
+    private static final String REGEX_GAME_CHOICE = "[1-4]";
+    private static final String REGEX_PLAYERS_PP_COUNT_CHOICE = "[2,4,6,8]";
+    private static final String REGEX_PLAYERS_COUNT_CHOICE = "[2-8]";
+
     private String playerName;
     private String playersCount;
     private String gameType;
-    private Scanner sc;
-    private Communicator com;
+    private final Scanner sc;
+    private final Communicator com;
+
 
     public Lobby() {
         this.sc = new Scanner(System.in);
@@ -27,10 +43,10 @@ public class Lobby {
     }
 
     public int getPlayerChoice() {
-        com.say("choice");
+        com.say(CHOICE);
         String result = sc.nextLine();
-        while (!result.matches("[0-2]{1}")) {
-            com.say("choice");
+        while (!result.matches(REGEX_PLAYER_CHOICE)) {
+            com.say(CHOICE);
             result = sc.nextLine();
         }
         return Integer.parseInt(result);
@@ -47,9 +63,9 @@ public class Lobby {
     }
 
     private void rePlay() {
-        com.say("replay");
+        com.say(REPLAY);
         String string = sc.nextLine();
-        if (string.toUpperCase().equals("Y")) {
+        if (string.toUpperCase().equals(YES)) {
             go();
         } else {
             close();
@@ -58,7 +74,7 @@ public class Lobby {
 
     private void close() {
         sc.close();
-        com.say("seeyou");
+        com.say(SEE_YOU);
     }
 
     private void play() {
@@ -87,45 +103,45 @@ public class Lobby {
             case "3":
                 return new TournamentRule(list);
             case "4":
-                return new TournametHeadsUpRule(list);
+                return new TournamentHeadsUpRule(list);
         }
         return null;
     }
 
 
     private void choiceGame() {
-        com.say("game");
+        com.say(GAME);
         gameType = sc.nextLine();
-        while (!gameType.matches("[1-4]{1}")) {
-            com.say("game");
+        while (!gameType.matches(REGEX_GAME_CHOICE)) {
+            com.say(GAME);
             gameType = sc.nextLine();
         }
     }
 
     private void choicePlayer() {
         if (Integer.parseInt(gameType) > 3) {
-            com.say("playersPair");
+            com.say(PLAYER_PAIRS);
             playersCount = sc.nextLine();
-            while (!playersCount.matches("[2,4,6,8]{1}")) {
-                com.say("playersPair");
+            while (!playersCount.matches(REGEX_PLAYERS_PP_COUNT_CHOICE)) {
+                com.say(PLAYER_PAIRS);
                 playersCount = sc.nextLine();
             }
         } else {
-            com.say("players");
+            com.say(PLAYERS);
             playersCount = sc.nextLine();
-            while (!playersCount.matches("[2-8]{1}")) {
-                com.say("players");
+            while (!playersCount.matches(REGEX_PLAYERS_COUNT_CHOICE)) {
+                com.say(PLAYERS);
                 playersCount = sc.nextLine();
             }
         }
     }
 
     private void init() {
-        com.say("hello");
+        com.say(HELLO);
         sc.nextLine();
         playerName = sc.nextLine();
         while (playerName.equals("") || playerName.length() > 10) {
-            com.say("name");
+            com.say(NAME);
             playerName = sc.nextLine();
         }
     }

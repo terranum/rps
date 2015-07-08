@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
 public class Round {
-    private List<Player> players;
+
+    private final List<Player> players;
     private List<Player> winners;
     private List<Player> losers;
     private Hand winnerHand;
@@ -23,8 +23,8 @@ public class Round {
         players.stream()
                 .forEach(pl -> System.out.print(String.format("%10s", pl.getName())
                         + " - " + String.format("%8s", pl.getHand()) + " "));
-
         System.out.println();
+
         Set<Hand> playedHands = players.stream().map(Player::getHand).collect(Collectors.toSet());
 
         if (playedHands.size() == 2) {

@@ -4,12 +4,11 @@ import lobby.Lobby;
 import player.Hand;
 import player.Player;
 
-
-
 public class HeroPlayer implements Player {
-    private String name;
+
+    private final String name;
     private Hand hand;
-    private Lobby lobby;
+    private final Lobby lobby;
 
     public HeroPlayer(String name, Lobby lobby) {
         this.name = name;

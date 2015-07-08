@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TournamentRule implements Rule {
-    List<Player> players;
+
+    private final List<Player> players;
 
     public TournamentRule(List<Player> players) {
         this.players = players;
