@@ -46,7 +46,7 @@ public class Round {
                 .filter(pl -> !pl.getHand().equals(winnerHand))
                 .collect(Collectors.toList());
 
-        if(winners.size() == 1){
+        if(winners.size() <= 1 && losers.size() <= 1){
             this.finalRound = true;
         }
 

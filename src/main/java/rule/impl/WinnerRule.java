@@ -18,7 +18,7 @@ public class WinnerRule implements Rule {
     public List<Player> go() {
         Round round = new Round(players);
         round.play();
-        while (!round.isFinalRound()) {
+        while (round.getWinners().size() != 1) {
             if (round.getWinners().size() != 0) {
                 round = new Round(round.getWinners());
             } else {
